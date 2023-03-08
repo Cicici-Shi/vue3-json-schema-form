@@ -1,6 +1,6 @@
-import { Format, MacroKeywordDefinition } from 'ajv'
-import { PropType, DefineComponent } from 'vue'
-import { ErrorSchema } from './validator'
+import type { Format, MacroKeywordDefinition } from 'ajv'
+import type { PropType, DefineComponent } from 'vue'
+import type { ErrorSchema } from './validator'
 
 export enum SchemaTypes {
   'NUMBER' = 'number',
@@ -9,6 +9,10 @@ export enum SchemaTypes {
   'OBJECT' = 'object',
   'ARRAY' = 'array',
   'BOOLEAN' = 'boolean',
+}
+export enum Language {
+  zh = 'zh',
+  en = 'en',
 }
 
 type SchemaRef = { $ref: string }

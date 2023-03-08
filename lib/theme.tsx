@@ -1,15 +1,14 @@
 import {
   defineComponent,
-  PropType,
   computed,
-  ComputedRef,
   provide,
   inject,
   ref,
-  ExtractPropTypes,
 } from 'vue'
+import type { PropType, ComputedRef, ExtractPropTypes } from 'vue'
+
 import { useVJSFContext } from './context'
-import { FieldPropsDefine, Theme, UISchema } from './types'
+import type { FieldPropsDefine, Theme, UISchema } from './types'
 import { isObject } from './utils'
 
 const THEME_PROVIDER_KEY = Symbol()

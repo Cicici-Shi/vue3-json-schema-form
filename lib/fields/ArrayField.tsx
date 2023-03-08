@@ -1,7 +1,9 @@
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 import { createUseStyles } from 'vue-jss'
 
-import { FieldPropsDefine, Schema } from '../types'
+import { FieldPropsDefine } from '../types'
+import type { Schema } from '../types'
 import { useVJSFContext } from '../context'
 import { getWidget } from '../theme'
 

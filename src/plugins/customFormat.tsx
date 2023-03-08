@@ -1,7 +1,7 @@
-import { CommonWidgetPropsDefine, CustomFormat } from '../../lib'
+import { CommonWidgetPropsDefine } from '../../lib'
+import type { CustomFormat } from '../../lib'
 import { withFormItem } from '../../lib/theme-default/FormItem'
 import { computed, defineComponent } from 'vue'
-import { CommonWidgetDefine } from '../../lib/types'
 
 const component = withFormItem(
   defineComponent({

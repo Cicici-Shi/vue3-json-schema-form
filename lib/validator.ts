@@ -5,6 +5,7 @@ import type { ErrorObject } from 'ajv'
 import i18n from 'ajv-i18n'
 
 import type { Schema } from './types'
+import { Language } from './types'
 import { isObject } from './utils'
 
 interface TransformedErrorObject {
@@ -107,7 +108,7 @@ export async function validateFormData(
   validator: Ajv,
   formData: any,
   schema: Schema,
-  locale = 'zh',
+  locale: Language = Language.zh,
   customValidate?: (data: any, errors: any) => void,
 ) {
   let validationError = null
@@ -124,7 +125,7 @@ export async function validateFormData(
     errors = [
       ...errors,
       {
-        message: validationError.message,
+        message: (validationError as any).message,
       } as TransformedErrorObject,
     ]
   }

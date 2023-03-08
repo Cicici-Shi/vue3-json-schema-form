@@ -1,17 +1,17 @@
 import {
   defineComponent,
-  PropType,
   provide,
   watch,
   watchEffect,
   shallowRef,
-  Ref,
   ref,
   computed,
 } from 'vue'
-import Ajv, { Options } from 'ajv'
+import type { PropType, Ref } from 'vue'
+import Ajv from 'ajv'
+import type { Options } from 'ajv'
 
-import {
+import type {
   Schema,
   UISchema,
   CustomFormat,

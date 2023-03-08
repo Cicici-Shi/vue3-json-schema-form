@@ -1,5 +1,6 @@
-import { inject, Ref } from 'vue'
-import { CommonFieldType, CommonWidgetDefine, Schema } from './types'
+import { inject } from 'vue'
+import type { Ref } from 'vue'
+import type { CommonFieldType, CommonWidgetDefine, Schema } from './types'
 
 export const SchemaFormContextKey = Symbol()
 

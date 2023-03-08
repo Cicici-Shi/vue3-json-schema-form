@@ -15,7 +15,7 @@ const SelectionWidget = withFormItem(
 
       watch(
         () => props.value,
-        (v) => {
+        (v:any) => {
           if (v !== currentValueRef.value) currentValueRef.value = v
         },
       )
