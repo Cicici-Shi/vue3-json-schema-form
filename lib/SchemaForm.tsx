@@ -20,7 +20,9 @@ import type {
 } from './types'
 import SchemaItem from './SchemaItem'
 import { SchemaFormContextKey } from './context'
-import { validateFormData, ErrorSchema } from './validator'
+import { validateFormData } from './validator'
+import type { ErrorSchema } from './validator'
+import { Language } from '../lib/types'
 
 interface ContextRef {
   doValidate: () => Promise<{
@@ -59,7 +61,7 @@ export default defineComponent({
     },
     locale: {
       type: String,
-      default: 'zh',
+      default: Language.zh,
     },
     customValidate: {
       type: Function as PropType<(data: any, errors: any) => void>,
