@@ -85,7 +85,6 @@ function transformErrors(
   errors: ErrorObject[] | null | undefined,
 ): TransformedErrorObject[] {
   if (errors === null || errors === undefined) return []
-console.log(errors)
   //   {
   //     keyword: 'errorMessage',
   //     instancePath: '/name',
