@@ -60,7 +60,7 @@ export default defineComponent({
       type: Object as PropType<Options>,
     },
     locale: {
-      type: String,
+      type: String as PropType<Language>,
       default: Language.zh,
     },
     customValidate: {
