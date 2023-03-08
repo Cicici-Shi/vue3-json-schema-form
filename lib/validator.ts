@@ -85,18 +85,18 @@ function transformErrors(
   errors: ErrorObject[] | null | undefined,
 ): TransformedErrorObject[] {
   if (errors === null || errors === undefined) return []
-
+console.log(errors)
   //   {
   //     keyword: 'errorMessage',
-  //     dataPath: '/name',
+  //     instancePath: '/name',
   //     schemaPath: '#/properties/name/errorMessage',
   //     params: { errors: [Array] },
   //     message: '自定义关键字验证 test 失败了'
   //   },
-  return errors.map(({ keyword, dataPath, schemaPath, params, message }) => {
+  return errors.map(({ keyword, instancePath, schemaPath, params, message }) => {
     return {
       name: keyword,
-      property: `${dataPath}`,
+      property: `${instancePath}`,
       schemaPath,
       params,
       message,
