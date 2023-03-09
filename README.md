@@ -3,17 +3,25 @@
 Based on Vue.js and JSON Schema, you only need to provide a JSON Schema to generate a corresponding form, which supports custom components, custom error message configuration and validation rules.
 
 ## What is JSON Schema
-JSON Schema是基于JSON格式,用于定义JSON数据结构以及校验JSON数据内容。
-使用场景：
-1.数据校验
-不只是JavaScript/Typescript，其他编程语言也有基于JSON Schema实现的校验器，如Java的Snow 、go的gojsonschema和Python的jschon 等等都是基于此去开发的。所以通过JSON Schema规范，还可以保持前后端校验的一致。
-2.form自动生成
-​ JSON Schem虽然有规范约束，但仍然还是一份描述数据的JSON配置，那么基于这份配置，逻辑上就能自动渲染出功能完整的表单UI。
 
-JSON Schema的表单生成
-通过 JSON Schema 生成form表单，数据校验校验基于 ajv，只需要一个必须的 schema 参数即可生成完整可校验的form表单。
-支持嵌套
+JSON Schema 是基于 JSON 格式,用于定义 JSON 数据结构以及校验 JSON 数据内容。
+使用场景： 1.数据校验
+不只是 JavaScript/Typescript，其他编程语言也有基于 JSON Schema 实现的校验器，如 Java 的 Snow 、go 的 gojsonschema 和 Python 的 jschon 等等都是基于此去开发的。所以通过 JSON Schema 规范，还可以保持前后端校验的一致。
+2.form 自动生成
+​ JSON Schem 虽然有规范约束，但仍然还是一份描述数据的 JSON 配置，那么基于这份配置，逻辑上就能自动渲染出功能完整的表单 UI。
 
+## JSON Schema 的表单生成
+
+通过 JSON Schema 生成 form 表单，数据校验校验基于 ajv，只需要一个必须的 schema 参数即可生成完整可校验的 form 表单。
+
+### 线上演示地址：
+
+借助 monaco-editor 展现 schema、UISchema、value 及最终展示效果。使用者可以了解基本示例，并直接在页面上编辑 schema，即时看到效果。
+
+### 数据类型及对应效果：
+#### Object
+包裹多个schema，将转换为各种不同类型的schemaItem
+#### Array
 单类型数组 single-type
 {
   items: { type: string }
@@ -32,63 +40,52 @@ JSON Schema的表单生成
   items: { type: string, enum: ['1', '2']}
 }
 
-线上演示地址：借助monaco-editor展现schema、UISchema、value及最终展示效果。使用者可以了解基本示例，并直接在页面上编辑schema，即时看到效果。
+多文件上传
+{
+  upload: true
+}
 
-Vite
+#### String
+普通输入框
 
-TOdo
-elementplus
+文本区域
+{
+  rows: '4',
+}
 
-自定义
-input password密码   xxx校验和上面一样
-input radio 单选按钮
-select 下拉列表框
+选择颜色
+{
+  format: 'color',
+}
 
+单文件上传
+{
+  upload: true
+}
 
+日期选择
+{
+  date: true
+}
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+邮箱
+{
+  email: true
+}
 
-## Type Support for `.vue` Imports in TS
+网址
+{
+  url: true
+}
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+#### Number
+仅输入数字的输入框，带有步进箭头
+单项下拉框
+单选按钮
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## 技术栈
+Vue3 + TypeScript + Ajv.js + JSS + Vite + Vitest
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## Todo
+引入elementplus
+提升单测覆盖率
