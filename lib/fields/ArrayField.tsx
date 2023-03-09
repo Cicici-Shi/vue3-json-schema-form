@@ -114,6 +114,10 @@ export default defineComponent({
   name: 'ArrayField',
   props: FieldPropsDefine,
   setup(props) {
+    const handleChange = (v: any) => {
+      props.onChange(v)
+    }
+
     const context = useVJSFContext()
 
     const handleArrayItemChange = (v: any, index: number) => {
@@ -157,9 +161,11 @@ export default defineComponent({
     }
 
     const SelectionWidgetRef = getWidget('SelectionWidget')
+    const UploadWidgetRef = getWidget('UploadWidget')
     return () => {
       const SelectionWidget = SelectionWidgetRef.value
-      const { schema, rootSchema, value, errorSchema, uiSchema } = props
+      const UploadWidget = UploadWidgetRef.value
+      const { schema, schema: { upload }, rootSchema, value, errorSchema, uiSchema } = props
       const { SchemaItem } = context
       const isMultiType = Array.isArray(schema.items)
       // as any 跳过类型检查
@@ -185,7 +191,7 @@ export default defineComponent({
             />
           )
         })
-      } else if (!isSelect) {
+      } else if (!upload && !isSelect) {
         // single type
         const arr = Array.isArray(value) ? value : []
 
@@ -210,6 +216,15 @@ export default defineComponent({
             </ArrayItemWrapper>
           )
         })
+      } else if (upload) {
+        return (
+          <UploadWidget
+            value={value}
+            onChange={handleChange}
+            schema={schema}
+            errors={errorSchema.__errors}
+          />
+        )
       } else {
         // multi-select
         const enumOptions = (schema as any).items.enum

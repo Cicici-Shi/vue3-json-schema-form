@@ -13,7 +13,6 @@ const component = withFormItem(
         e.target.value = props.value
         props.onChange(value)
       }
-console.log(props.value)
       const styleRef = computed(() => {
         return {
           color: (props.options && props.options.color) || 'black',

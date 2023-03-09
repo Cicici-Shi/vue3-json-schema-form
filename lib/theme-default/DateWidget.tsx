@@ -1,0 +1,27 @@
+import { defineComponent } from 'vue'
+import { CommonWidgetPropsDefine } from '../types'
+import { withFormItem } from './FormItem'
+
+const DateWidget = withFormItem(
+  defineComponent({
+    name: 'DateWidget',
+    props: CommonWidgetPropsDefine,
+    setup(props) {
+      const handleChange = (e: any) => {
+        const v = e.target.value
+        e.target.value = props.value
+        const value = Number(v)
+        Number.isNaN(value) ? props.onChange(undefined) : props.onChange(value)
+      }
+
+      return () => {
+        const { value, schema: { type } } = props
+        return (
+          <input type="date" value={value as any} onInput={handleChange} />
+        )
+      }
+    },
+  }),
+)
+
+export default DateWidget

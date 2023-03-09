@@ -11,7 +11,7 @@ import demos from './demos'
 import SchemaForm, { ThemeProvider } from '../lib'
 import themeDefault from '../lib/theme-default'
 
-import customFormat from './plugins/customFormat'
+import customFormat from './plugins/customFormatColor'
 import customKeyword from './plugins/customKeyword'
 
 // TODO: 在lib中export
@@ -36,10 +36,28 @@ const useStyles = createUseStyles({
           height: '30px',
         }, 
       },
+      '&[type=file]': {
+        height: '30px',
+        '&::-webkit-file-upload-button': {
+          height: '30px',
+        },
+      },
+      '&[type=date]': {
+        height: '30px',
+        width: '160px',
+        padding: '1px 10px'
+      },
     },
     '& select': {
       padding: '10px 15px',
-      width: 180
+      width: 180,
+      '&[multiple]': {
+        width: '130px',
+        padding: '3px 5px'
+      },
+    },
+    '& button': {
+      marginLeft: '7px'
     },
   },
   menu: {

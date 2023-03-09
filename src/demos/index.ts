@@ -2,6 +2,6 @@ import array from './array'
 import registration from './registration'
 import number from './number'
 import widgets from './widgets'
-import nesting from './nesting'
+import upload from './upload'
 
-export default [nesting, number, array, registration, widgets]
+export default [number, array, upload, registration, widgets]

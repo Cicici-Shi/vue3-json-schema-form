@@ -8,11 +8,11 @@ export enum SchemaTypes {
   'STRING' = 'string',
   'OBJECT' = 'object',
   'ARRAY' = 'array',
-  'BOOLEAN' = 'boolean',
+  'BOOLEAN' = 'boolean'
 }
 export enum Language {
   zh = 'zh',
-  en = 'en',
+  en = 'en'
 }
 
 type SchemaRef = { $ref: string }
@@ -30,6 +30,11 @@ export interface Schema {
   name?: string
   radio?: boolean
   singleSelect?: boolean
+  upload?: boolean
+  email?: boolean
+  url?: boolean
+  date?: boolean
+
   rows?: number
 
   properties?: {
@@ -64,27 +69,27 @@ export interface Schema {
 export const FieldPropsDefine = {
   schema: {
     type: Object as PropType<Schema>,
-    required: true,
+    required: true
   },
   value: {
-    required: true,
+    required: true
   },
   onChange: {
     type: Function as PropType<(v: any) => void>,
-    required: true,
+    required: true
   },
   rootSchema: {
     type: Object as PropType<Schema>,
-    required: true,
+    required: true
   },
   errorSchema: {
     type: Object as PropType<ErrorSchema>,
-    required: true,
+    required: true
   },
   uiSchema: {
     type: Object as PropType<UISchema>,
-    required: true,
-  },
+    required: true
+  }
 } as const
 
 export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>
@@ -93,38 +98,40 @@ export const CommonWidgetPropsDefine = {
   value: {},
   onChange: {
     type: Function as PropType<(v: any) => void>,
-    required: true,
+    required: true
   },
   errors: {
-    type: Object as PropType<string[]>,
+    type: Object as PropType<string[]>
   },
   schema: {
     type: Object as PropType<Schema>,
-    required: true,
+    required: true
   },
   options: {
-    type: Object as PropType<{ [keys: string]: any }>,
-  },
+    type: Object as PropType<{ [keys: string]: any }>
+  }
 } as const
 
 export const SelectionWidgetPropsDefine = {
   ...CommonWidgetPropsDefine,
   options: {
     type: Array as PropType<{ key: string; value: any }[]>,
-    required: true,
-  },
+    required: true
+  }
 } as const
 
 export type CommonWidgetDefine = DefineComponent<typeof CommonWidgetPropsDefine>
 
-export type SelectionWidgetDefine = DefineComponent<
-  typeof SelectionWidgetPropsDefine
->
+export type SelectionWidgetDefine = DefineComponent<typeof SelectionWidgetPropsDefine>
 
 export interface Theme {
   widgets: {
     SelectionWidget: SelectionWidgetDefine
     TextWidget: CommonWidgetDefine
+    UploadWidget: CommonWidgetDefine
+    EmailWidget: CommonWidgetDefine
+    UrlWidget: CommonWidgetDefine
+    DateWidget: CommonWidgetDefine
     NumberWidget: CommonWidgetDefine
     RadioWidget: CommonWidgetDefine
   }

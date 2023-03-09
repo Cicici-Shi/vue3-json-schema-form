@@ -14,6 +14,24 @@ JSON Schema的表单生成
 通过 JSON Schema 生成form表单，数据校验校验基于 ajv，只需要一个必须的 schema 参数即可生成完整可校验的form表单。
 支持嵌套
 
+单类型数组 single-type
+{
+  items: { type: string }
+}
+
+固定长度，多类型数组 fixed length & multi-type
+{
+  items: [
+    { type: string },
+    { type: number }
+  ]
+}
+
+多选类型数组 multi-select
+{
+  items: { type: string, enum: ['1', '2']}
+}
+
 线上演示地址：借助monaco-editor展现schema、UISchema、value及最终展示效果。使用者可以了解基本示例，并直接在页面上编辑schema，即时看到效果。
 
 Vite
