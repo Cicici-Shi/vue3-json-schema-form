@@ -1,4 +1,7 @@
-import simple from './simple'
-import demo from './demo'
+import array from './array'
+import registration from './registration'
+import number from './number'
+import widgets from './widgets'
+import nesting from './nesting'
 
-export default [demo, simple]
+export default [nesting, number, array, registration, widgets]

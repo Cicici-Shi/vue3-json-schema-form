@@ -18,15 +18,26 @@ const TextWidget = withFormItem(
       })
 
       return () => {
-        const { value } = props
-        return (
-          <input
-            type="text"
-            value={value as any}
-            onInput={handleChange}
-            style={styleRef.value}
-          />
-        )
+        const { value, schema: { rows } } = props
+
+        if (rows) {
+          return (
+            <textarea
+              rows={rows}
+              value={value as any}
+              onInput={handleChange}
+            />
+          )
+        } else {
+          return (
+            <input
+              type="text"
+              value={value as any}
+              onInput={handleChange}
+              style={styleRef.value}
+            />
+          )
+        }
       }
     },
   }),

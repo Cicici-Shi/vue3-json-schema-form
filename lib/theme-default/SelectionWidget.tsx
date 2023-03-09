@@ -21,13 +21,23 @@ const SelectionWidget = withFormItem(
       )
 
       return () => {
-        const { options } = props
+        const { options, schema } = props
+        
         return (
-          <select multiple={true} v-model={currentValueRef.value}>
-            {options.map((opt) => {
-              return <option value={opt.value}>{opt.key}</option>
-            })}
-          </select>
+          <div>
+            <select multiple={!schema.singleSelect} v-model={currentValueRef.value}>
+              {options.map((opt) => {
+                return <option value={opt.value}>{opt.key}</option>
+              })}
+            </select>
+            <div>
+            {!schema.singleSelect ? <p>按住 Ctrl (windows) / Command (Mac) 按钮来选择多个选项。</p> : ''}
+            </div>
+            
+              
+          
+          </div>
+
         )
       }
     },

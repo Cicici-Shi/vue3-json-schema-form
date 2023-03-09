@@ -29,7 +29,18 @@ const useStyles = createUseStyles({
     flexDirection: 'column',
     height: '100%',
     width: '1200px',
-    margin: '0 auto',
+    '& input': {
+      padding: '10px 15px',
+      '&[type=number]': {
+        '&::-webkit-inner-spin-button': {
+          height: '30px',
+        }, 
+      },
+    },
+    '& select': {
+      padding: '10px 15px',
+      width: 180
+    },
   },
   menu: {
     marginBottom: 20,
@@ -75,6 +86,10 @@ const useStyles = createUseStyles({
       background: '#337ab7',
     },
   },
+  check: {
+    margin: '10px 0',
+    padding: '10px 15px'
+  }
 })
 
 // implementation
@@ -219,11 +234,11 @@ export default defineComponent({
                   customKeywords={customKeyword}
                 />
               </ThemeProvider>
-              <button onClick={validateForm}>校验</button>
+              <button class={classes.check} onClick={validateForm}>validate</button>
             </div>
           </div>
           <a
-            href="https://github.com/cwy007/vue3-json-schema-form"
+            href="https://github.com/Cicici-Shi/vue3-json-schema-form"
             target="_blank"
           >
             github

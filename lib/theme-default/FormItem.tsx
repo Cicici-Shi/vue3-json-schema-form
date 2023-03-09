@@ -1,13 +1,23 @@
-import { defineComponent } from 'vue'
+import { defineComponent, shallowRef } from 'vue'
 import { createUseStyles } from 'vue-jss'
 
 import { CommonWidgetPropsDefine } from '../types'
 
 const useStyles = createUseStyles({
-  container: {},
+  container: {
+    '&:not(:first-child)': {
+      margin: '10px 0',
+    },
+  },
   label: {
     display: 'block',
     color: '#777',
+    margin: '3px'
+  },
+  desc: {
+    color: '#aaa',
+    margin: '3px',
+    fontSize: 12
   },
   errorText: {
     color: 'red',
@@ -27,10 +37,10 @@ const FormItem = defineComponent({
     return () => {
       const classes = classesRef.value
       const { schema, errors } = props
-
       return (
         <div class={classes.container}>
           <label class={classes.label}>{schema.title}</label>
+          <div class={classes.desc}>{schema.description}</div>
           {slots.default && slots.default()}
           <ul class={classes.errorText}>
             {errors?.map((err) => (
@@ -47,17 +57,33 @@ export default FormItem
 
 // HOC: higger order component
 export function withFormItem(Widget: any) {
-  return defineComponent({
-    name: `Wrapped${Widget.name}`,
-    props: CommonWidgetPropsDefine,
-    setup(props, { attrs }) {
-      return () => {
-        return (
-          <FormItem {...props}>
-            <Widget {...props} {...attrs} />
-          </FormItem>
-        )
-      }
-    },
-  })
+  if (['ColorWidget', 'PasswordWidget'].includes(Widget.name)) {
+    return shallowRef(defineComponent({
+      name: `Wrapped${Widget.name}`,
+      props: CommonWidgetPropsDefine,
+      setup(props, { attrs }) {
+        return () => {
+          return (
+            <FormItem {...props}>
+              <Widget {...props} {...attrs} />
+            </FormItem>
+          )
+        }
+      },
+    }))
+    } else {
+      return defineComponent({
+        name: `Wrapped${Widget.name}`,
+        props: CommonWidgetPropsDefine,
+        setup(props, { attrs }) {
+          return () => {
+            return (
+              <FormItem {...props}>
+                <Widget {...props} {...attrs} />
+              </FormItem>
+            )
+          }
+        },
+      })
+        }
 }

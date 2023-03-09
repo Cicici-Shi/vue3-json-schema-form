@@ -23,7 +23,14 @@ export interface Schema {
   format?: string
 
   title?: string
+  description?: string
   default?: any
+
+  //input
+  name?: string
+  radio?: boolean
+  singleSelect?: boolean
+  rows?: number
 
   properties?: {
     [key: string]: Schema
@@ -119,6 +126,7 @@ export interface Theme {
     SelectionWidget: SelectionWidgetDefine
     TextWidget: CommonWidgetDefine
     NumberWidget: CommonWidgetDefine
+    RadioWidget: CommonWidgetDefine
   }
 }
 

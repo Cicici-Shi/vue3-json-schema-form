@@ -10,6 +10,14 @@ import { getWidget } from '../theme'
 const useStyles = createUseStyles({
   container: {
     border: '1px solid #eee',
+    position: 'relative',
+  },
+  index: {
+    position: 'absolute',
+    left: 10,
+    padding: '0 10px',
+    backgroundColor: 'rgba(0,0,0,.28)',
+    color: 'white'
   },
   actions: {
     background: '#eee',
@@ -62,6 +70,7 @@ const ArrayItemWrapper = defineComponent({
       return (
         <div class={classes.container}>
           <div class={classes.actions}>
+            <div class={classes.index}>{props.index + 1}</div>
             <button class={classes.action} onClick={handleAdd}>
               新增
             </button>
